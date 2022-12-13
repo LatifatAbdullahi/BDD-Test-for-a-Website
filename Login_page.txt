@@ -1,0 +1,85 @@
+package pages;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import utility.BaseUtil;
+
+public class Login_page  extends BaseUtil{
+	
+	/**
+	 * 
+	 * Page Object Model(POM)- is an object oriented programming function
+	 * 
+	 * Pros of POM
+	 * -maintanability
+	 * -readability
+	 * -reusability
+	 * 
+	 * -Pages
+	 *  -login page
+	 *  -home page
+	 *  -order page
+	 *  
+	 * -Tests
+	 *  -login tests
+	 *  -homepage tests
+	 *  -order test
+	 */
+	
+ WebDriver driver;
+ 
+ // then create a constructor 
+ 
+ 	private BaseUtil base;
+ 	
+ 	public Login_page(BaseUtil base) {
+ 		this.base = base;
+ 	}
+ 
+ 	public Login_page(WebDriver driver) {
+ 		this.driver = driver;
+ 		PageFactory.initElements(driver, this);
+ }
+ 
+ 
+ // WebElement for Login page(page objects)
+ 
+ 	//	@FindBy(id="user-name")
+ 	//	WebElement usernameField;
+ 		
+ 	//	@FindBy(name="password")
+ 	//	WebElement passwordField;
+ 		
+ 	//	@FindBy(xpath="//input[@id='login-button']")
+ 	//	WebElement loginButton;
+ 		
+ 		By usernameField = By.id("user-name");
+ 		By passwordField = By.name("password");
+ 		By loginButton = By.xpath("//input[@id='login-button']");
+ 		
+ 	// then create a method(always give your method a good name)
+ 		
+ 		public void enterUsername(String username) {
+ 			base.driver.findElement(usernameField).sendKeys(username);
+ 		}
+ 		
+ 		public void enterPassword(String password) {
+ 			base.driver.findElement(passwordField).sendKeys(password);
+ 		}
+       
+ 		public void clickOnLoginButton() {
+ 			base.driver.findElement(loginButton).click();
+ 		}
+ 		
+ 		public void loginTowebsite (String username, String password) {
+ 			base.driver.findElement(usernameField).sendKeys(username);
+ 			base.driver.findElement(passwordField).sendKeys(password);
+ 			base.driver.findElement(loginButton).click();
+ 		}
+ 		}
+

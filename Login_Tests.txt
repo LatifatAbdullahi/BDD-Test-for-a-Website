@@ -1,0 +1,65 @@
+package stepDefinition;
+
+import static org.junit.Assert.assertEquals;
+
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import junit.framework.Assert;
+import myLibrary.Constants;
+import pages.Login_page;
+import utility.BaseUtil;
+
+public class Login_Tests extends BaseUtil {
+	
+	private BaseUtil base;
+	public Login_Tests(BaseUtil base) {
+		this.base = base;
+	}
+	
+	//Scenario: User to be able to login with correct user name and password
+	@Given("user opens url")
+	public void user_open_url() {
+		base.driver.get(Constants.URL);
+	
+	}
+	
+	@When ("user enters valid username")
+	public void  user_enters_valid_username() {
+		Login_page login = new Login_page(base);
+		login.enterUsername("standard_user");
+		
+	}
+	
+	@And ("user enters valid password")
+	public void user_enters_valid_password() {
+		Login_page login = new Login_page(base);
+		login.enterPassword("secret_sauce");
+		
+	}
+	
+	@Then ("user clicks on login button")
+	public void  user_clicks_on_login_button() {
+		Login_page login = new Login_page(base);
+		login.clickOnLoginButton();
+		
+	}
+
+	@And ("user see homepage")
+	public void  user_see_homepage() {
+		Login_page login = new Login_page(base);
+		String actualURL = base.driver.getCurrentUrl();
+		String expectedURL = Constants.HOMEPAGE_URL;
+		assertEquals(actualURL, expectedURL);
+		
+		
+	}
+	
+	@Given ("user logs in as a locked user")
+	public void user_logs_in_as_a_locked_user() {
+		base.driver.get(Constants.URL);
+		Login_page login = new Login_page(base);
+		login.loginTowebsite("standard_user", "secret_sauce");
+	}
+}

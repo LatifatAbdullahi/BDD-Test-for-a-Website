@@ -1,0 +1,13 @@
+#Author: your.email@your.domain.com
+
+Feature: Login
+
+		Scenario: User to be able to login with correct user name and password
+				Given user opens url
+				When user enters valid username 
+				And user enters valid password
+				Then user clicks on login button
+				And user see homepage
+				
+		Scenario: User logs in as a locked_out user
+				Given user logs in as a locked user
